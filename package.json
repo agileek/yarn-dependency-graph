@@ -1,0 +1,19 @@
+{
+  "name": "yarn-dependency-graph",
+  "version": "1.0.0",
+  "description": "display the dependency graph",
+  "main": "index.ts",
+  "author": "Bitard Michaël",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.0",
+    "@types/node": "^14.0.13",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "ts-graphviz": "^0.13.1"
+  }
+}
