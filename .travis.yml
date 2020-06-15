@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- '12'
+deploy:
+  provider: npm
+  email: bitard.michael@gmail.com
+  api_key:
+    secure: f2bvMBFljLSLzU+OoIy4PGZ3q8v+TeJjEnF8nFeLJqQJnXLwMmWTZAriCz4I2ZEte2FDqPAp3ZZx+yDhAPGM7LG89yy8NHC3Nx/cM2bfupI/JBmPasElDP/V9Ea2/p6BytppJ8X4p417lwHLwF0Qj3OJO3b9Ldbnt6QuDvwKT4vcpDHdMlgVI/E0nXdjM3WUZvZBtbt9EHew6u9MyHYeBbkEqZJOXTkWJ6M2M+nSgumK7IjtrMeotTFshG6RnKVwTUntXXDeptgmEf5gXQ0+DSig9m2paqxLrkiX2TXpvCxl2cnLGhSySfegMokNpSuP8lcV+itndaVPzv5owKI6e1Nuj3M0/A9Jp/FQ/IJY7tvQGjKRxTJqHKmnsCB/SETgO1y7MhHWBCx6ZahqPy1gN/IQYc5vG7sOuNDq+Sod6Iw9FmpowxTVs3BoewKuTK+84Yfn/2PkhS20o4pENQHyFaY7EWqDIswwIyH2A9iYKR6Xekfw5iibISKpVXNqHnSD+I+t+mTo7yi6G5ZBUFonA402WiaoNj6hv+3fFM1aR85rOf1wLW76T9CK/F5n8mZlV9uR/DzxB3iGSKCtwI/+0WXAWJUyxbBzvLi+RRuQgugxL25TLl44xxJKRLgcaiJzAJdv/jap0sV0u/seRU8IREdgOeDCvWqMuDCwoM5hgyI=
+  on:
+    tags: true
+    repo: agileek/yarn-dependency-graph
+install:
+- yarn
+test:
+- yarn jest
