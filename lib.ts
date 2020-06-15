@@ -21,7 +21,7 @@ export const parseName = (name: string): Dependency => {
     }
 }
 
-const children = (topLevelDependency: GraphDependency, nodes: Map<string, INode>, g: Digraph) => {
+const children = (topLevelDependency: GraphDependency, nodes: Map<string, INode>, links: Set<string>, g: Digraph) => {
     const parent = parseName(topLevelDependency.name)
     const parentNode = nodes.get(parent.name);
     if (parentNode !== undefined) {
@@ -32,13 +32,17 @@ const children = (topLevelDependency: GraphDependency, nodes: Map<string, INode>
                 if (parent.name === childDependency.name) {
                     console.log('dependency on itself...', topLevelDependency.name, childDependency.name);
                 } else {
-                    g.createEdge([parentNode, childNode])
+                    let link = `${parent.name}-${child.name}`;
+                    if (!links.has(link)){
+                        links.add(link);
+                        g.createEdge([parentNode, childNode])
+                    }
                 }
             } else {
                 console.log('child node unknown', child.name)
             }
             if (child.children?.length ?? 0 >= 0) {
-                children(child, nodes, g);
+                children(child, nodes, links, g);
             }
         })
     } else {
@@ -48,13 +52,14 @@ const children = (topLevelDependency: GraphDependency, nodes: Map<string, INode>
 
 export const generateGraph = (graphDependency: GraphDependency[]): string => {
     const nodes = new Map<string, INode>();
+    const links = new Set<string>();
     const g = digraph('G');
     graphDependency.map(tree => {
         const dependency = parseName(tree.name)
         nodes.set(dependency.name, g.createNode(dependency.name));
     });
     graphDependency.map(topLevelDependency => {
-        children(topLevelDependency, nodes, g);
+        children(topLevelDependency, nodes, links, g);
     });
     return toDot(g);
 }

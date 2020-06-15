@@ -31,7 +31,15 @@ describe('generateGraph', () => {
     });
     test('two levels', async () => {
         const thirdDependency: GraphDependency = {name: "thirdDep@thirdVersion", children: []};
-        expect(generateGraph([{...firstDependency, children: [{...secondDependency, children: [thirdDependency]}]}, secondDependency, thirdDependency])).toEqual(`digraph "G" {
+        let data = [{...firstDependency, children: [{...secondDependency, children: [thirdDependency]}]}, secondDependency, thirdDependency];
+        expect(generateGraph(data)).toEqual(`digraph "G" {
+  "firstDep";
+  "secondDep";
+  "thirdDep";
+  "firstDep" -> "secondDep";
+  "secondDep" -> "thirdDep";
+}`);
+        expect(generateGraph([...data, ...data])).toEqual(`digraph "G" {
   "firstDep";
   "secondDep";
   "thirdDep";
