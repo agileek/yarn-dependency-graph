@@ -5,6 +5,9 @@
   "main": "index.ts",
   "author": "Bitard Michaël",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.0",
     "@types/node": "^14.0.13",

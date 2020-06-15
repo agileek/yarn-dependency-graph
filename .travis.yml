@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '12'
+  - '12'
 deploy:
   provider: npm
   email: bitard.michael@gmail.com
@@ -10,6 +10,4 @@ deploy:
     tags: true
     repo: agileek/yarn-dependency-graph
 install:
-- yarn
-test:
-- yarn jest
+  - yarn
